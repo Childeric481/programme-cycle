@@ -1,0 +1,289 @@
+.planche {
+  padding: calc(env(safe-area-inset-top) + 28px) 0 64px;
+  background: var(--fond);
+  color: var(--encre);
+}
+
+.planche__entete {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px 20px;
+}
+.planche__icone {
+  flex: none;
+  border-radius: 16px;
+}
+.planche__titre {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.planche__intro {
+  padding: 0 16px 40px;
+  max-width: calc(65ch + 32px);
+}
+.planche__points {
+  list-style: decimal;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.planche__section {
+  padding-bottom: 56px;
+}
+.planche__h2 {
+  font-size: 32px;
+  font-weight: 700;
+  padding: 0 16px 14px;
+}
+.planche__h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 28px 0 14px;
+}
+.planche__intro .planche__h3 {
+  margin-top: 20px;
+}
+
+/* Deux thèmes côte à côte sur grand écran. */
+.planche__themes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 1100px) {
+  .planche__themes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.planche__theme {
+  background: var(--fond);
+  color: var(--encre);
+  padding: 20px 16px 32px;
+  min-width: 0;
+}
+.planche__theme-nom {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  color: var(--attenue);
+}
+
+.planche__rangee {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.planche__rangee--bas {
+  align-items: flex-end;
+}
+.planche__fig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.planche__etats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 560px;
+}
+.planche__etats-ligne {
+  display: grid;
+  grid-template-columns: 16px repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  align-items: center;
+  font-size: 14px;
+}
+.planche__etat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Jetons */
+.planche__nuancier {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px 12px;
+}
+.planche__nuance {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.planche__pastille {
+  height: 48px;
+  border: 1px solid var(--filet);
+  margin-bottom: 4px;
+}
+.planche__pastille--seance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  border: 0;
+}
+.planche__nuance-nom {
+  font-weight: 600;
+}
+.planche__contrastes {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--filet);
+}
+.planche__contraste {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--filet);
+}
+.planche__echantillon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  font-weight: 600;
+}
+.planche__verdict {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: var(--attenue);
+  white-space: nowrap;
+}
+.planche__verdict--ko {
+  color: var(--encre);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Typographie */
+.planche__typo {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.planche__specimen {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.planche__specimen--etroit {
+  max-width: 240px;
+}
+.planche__specimen--lecture p:not(.secondaire) {
+  max-width: 65ch;
+}
+.planche__t-date {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 0.95;
+}
+.planche__t-nom {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.planche__t-format {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 1;
+}
+.planche__t-format--48 {
+  font-size: 48px;
+}
+.planche__t-format--32 {
+  font-size: 32px;
+}
+.planche__t-repos {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: clamp(64px, 22vw, 104px);
+  line-height: 1;
+}
+.planche__t-chiffres {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.15;
+  text-align: right;
+  width: max-content;
+}
+.planche__boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.planche__icones {
+  display: flex;
+  gap: 18px;
+}
+
+/* Démos : un téléphone à taille réelle. */
+.planche__demo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px;
+}
+.planche__commandes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.planche__choix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.planche__puce {
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: var(--rayon-bouton);
+  background: var(--surface-2);
+  color: var(--encre);
+  font-weight: 500;
+  font-size: 15px;
+}
+.planche__puce[aria-pressed='true'] {
+  background: var(--encre);
+  color: var(--fond);
+}
+.planche__telephone {
+  position: relative;
+  width: min(390px, 100%);
+  height: min(844px, 88svh);
+  overflow: hidden;
+  border: 1px solid var(--filet);
+  border-radius: 28px;
+  background: var(--fond);
+  color: var(--encre);
+  isolation: isolate;
+}
+.planche__fini {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  text-align: center;
+}

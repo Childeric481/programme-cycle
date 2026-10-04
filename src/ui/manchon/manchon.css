@@ -1,0 +1,88 @@
+.manchon {
+  --jante: color-mix(in oklab, var(--face) var(--assombri), #000);
+  position: relative;
+  height: 96px;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Acier : à plat, un trait clair côté lumière (haut), un trait sombre côté ombre (bas). */
+.manchon__arbre,
+.manchon__collier,
+.manchon__fourreau {
+  position: absolute;
+  background: var(--acier);
+  box-shadow: inset 0 1px 0 var(--relief-clair), inset 0 -1px 0 var(--relief-sombre);
+}
+.manchon__arbre {
+  left: 0;
+  width: 36px;
+  top: 42px;
+  height: 12px;
+  background: color-mix(in oklab, var(--acier) 85%, var(--acier-sombre));
+}
+.manchon__collier {
+  left: 34px;
+  width: 14px;
+  top: 24px;
+  height: 48px;
+  border-radius: 3px;
+  box-shadow: inset 1px 1px 0 var(--relief-clair), inset -1px -1px 0 var(--relief-sombre);
+}
+.manchon__fourreau {
+  left: 48px;
+  right: 4px;
+  top: 37px;
+  height: 22px;
+  border-radius: 0 5px 5px 0;
+}
+
+.manchon__emplacement {
+  position: absolute;
+  top: 4px;
+  width: 18px;
+  height: 88px;
+  border-radius: 3px;
+  border: 1.5px dashed var(--attenue);
+  opacity: 0.55;
+}
+.manchon__emplacement--plein {
+  visibility: hidden;
+}
+
+/* Disque vu de profil : le caoutchouc de la séance, chanfreins plus sombres. */
+.manchon__disque {
+  position: absolute;
+  top: 4px;
+  width: 18px;
+  height: 88px;
+  border-radius: 3px;
+  background: linear-gradient(
+    var(--jante) 0 3px,
+    var(--face) 3px calc(100% - 3px),
+    var(--jante) calc(100% - 3px)
+  );
+  box-shadow: inset 1px 0 0 var(--relief-clair), inset -1px 0 0 var(--relief-sombre);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+/* Insert d'acier du moyeu : il dépasse d'un pixel de chaque côté du caoutchouc,
+   les inserts de deux disques voisins se touchent. */
+.manchon__disque::before,
+.manchon__disque::after {
+  content: '';
+  position: absolute;
+  top: 31px;
+  width: 1px;
+  height: 26px;
+  background: var(--acier-sombre);
+}
+.manchon__disque::before {
+  left: -1px;
+}
+.manchon__disque::after {
+  right: -1px;
+}
+.manchon__disque--charge {
+  opacity: 1;
+}

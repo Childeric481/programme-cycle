@@ -1,6 +1,6 @@
 # Programme. Notes de construction
 
-**Adresse publique :** https://childeric481.github.io/programme-cycle/ (déploiement en cours de vérification)
+**Adresse publique :** https://childeric481.github.io/programme-cycle/ (vérifiée le 4 octobre 2026 : page, manifest et service worker servis, 22 fichiers en cache après la première visite)
 
 **Planche de direction :** https://childeric481.github.io/programme-cycle/#/planche
 
@@ -22,8 +22,8 @@
 |---|---|
 | 1. Lecture, NOTES.md, vérifications | Fait le 4 octobre 2026 |
 | 2. Modèle du contenu et test de conformité | Fait. 52 vérifications, toutes vertes |
-| 3. Dépôt, workflow, squelette publié | En cours |
-| 4. Planche de direction | À faire, puis validation |
+| 3. Dépôt, workflow, squelette publié | Fait. Dépôt public `programme-cycle`, déploiement par GitHub Actions à chaque envoi sur `main` |
+| 4. Planche de direction | Publiée, en attente de validation |
 
 ## Choix techniques
 
@@ -82,6 +82,17 @@ Actions GitHub (pages de publication, 4 octobre 2026) : `actions/checkout@v7`, `
 4. **Règles, progression des charges** (+2,5 kg haut du corps, +5 kg bas du corps) et **paliers des tableaux** (+2 au soulevé de terre roumain, +4 au sumo RDL, +1 au développé militaire, etc.). L'application propose les paliers des tableaux, comme le demande D.4.
 5. **Supersets avec un seul lien de démonstration** (`bras`, `calves`, `latraise` en séance 4) : le lien est rattaché au premier mouvement (« Voir curl biceps poulie »). Le lien `bras` montre peut-être les deux mouvements.
 6. **Séance 3, version courte.** Le sous-titre « 360 m à fond, plafond 450. » décrit la version complète. En version courte, il ne reste que 120 m. Proposition : masquer ce sous-titre en version courte plutôt que d'afficher un chiffre faux. À valider.
+
+## Planche de direction : choix soumis à validation
+
+- **Disque** (`src/ui/plate/Plate.tsx`) : un seul composant SVG, géométrie calculée (jante 11 %, anneau de lettrage à 72 %, moyeu, alésage 50/450). Lumière fixe en haut à gauche, relief en traits de 1 px. Grain généré une fois (96 px, 5 % ; fonte 11 %, grain plus gros). Niveaux de détail : 24 px pastille et moyeu, 40 à 64 px jante en plus, 120 px et plus lettrage et relief. Numéro affiché à partir de 56 px.
+- **États** : prévu en contour, fait plein, en cours avec une bande à l'encre de la séance sur la jante (même langage que le repos), sauté estompé et barré, décalé en contour pointillé.
+- **Repos** : le moyeu en acier s'efface derrière le temps restant (seul son relief reste), pour garder les chiffres lisibles à bout de bras. La jauge est une bande peinte au milieu de la jante, à l'encre de la séance, sur le caoutchouc nu. Deux lames en demi-anneau tournent dans deux moitiés masquées : uniquement `transform` et `opacity`. Lettrage en trois couches (ombre, lumière, encre) qui tournent ensemble, un tour par minute, la lumière reste fixe.
+- **Fin du repos** : E.1 cite la pulsation du cadran de la version de référence, E.4 et E.5 décrivent la pulsation à chaque tic et la chute à zéro. Retenu : E.5, qui précise E.1.
+- **Barre qui se charge** : appliquée à toute la glissade, la courbe `cubic-bezier(.2,.9,.3,1.35)` dépasse la cible de 12 % et ferait traverser le disque précédent. La glissade va jusqu'au contact, la courbe s'applique au rebond (3 px), le clic sonore tombe au contact. Durée totale 380 ms.
+- **Volet « Pourquoi »** : E.5 demande une animation de hauteur, seule exception à la règle « transform et opacity ».
+- **Typographie à l'affichage** : apostrophe typographique, espaces insécables avant les deux-points et entre chiffre et unité. Le contenu stocké reste identique au document.
+- **Captures** : `scripts/captures-planche.mjs` (Playwright 1.63.0), à 390 × 844 et 360 × 800, clair et sombre. Corrigé après relecture : affichage « 60,0 kg » devenu « 60 kg », disque décalé allégé (seul le contour en pointillé), insert d'acier des disques de profil, raccord de la jauge à midi.
 
 ## Idées proposées, non implémentées
 

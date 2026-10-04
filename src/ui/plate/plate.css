@@ -1,0 +1,118 @@
+.plate {
+  --jante: color-mix(in oklab, var(--face) var(--assombri), #000);
+  display: block;
+  flex: none;
+  overflow: visible;
+}
+
+.plate__jante {
+  fill: var(--jante);
+}
+/* Jante vide : jauge à zéro (écran de repos, état « en cours »). */
+.plate__piste {
+  fill: color-mix(in oklab, var(--jante) 34%, var(--fond));
+}
+/* En cours : même langage que le repos, une bande à l'encre de la séance sur le caoutchouc. */
+.plate__progression {
+  fill: none;
+  stroke: var(--face-texte);
+}
+.plate__face {
+  fill: var(--face);
+}
+.plate__grain {
+  opacity: var(--grain);
+}
+.plate--fonte .plate__grain {
+  opacity: var(--grain-fonte);
+}
+.plate__usine {
+  fill: var(--s5-usine);
+}
+.plate__acier {
+  fill: var(--acier);
+}
+.plate__levre {
+  fill: color-mix(in oklab, var(--acier) 80%, var(--acier-sombre));
+}
+
+.plate__aretes path {
+  fill: none;
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+.plate__stop-clair {
+  stop-color: var(--relief-clair);
+}
+.plate__stop-clair-nul {
+  stop-color: rgb(255 255 255 / 0);
+}
+.plate__stop-sombre {
+  stop-color: var(--relief-sombre);
+}
+.plate__stop-sombre-nul {
+  stop-color: rgb(0 0 0 / 0);
+}
+
+/* Lettrage et numéro : seule capitale de l'application, elle appartient à l'objet. */
+.plate__lettrage {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+}
+.plate__numero {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-variant-numeric: lining-nums;
+}
+.plate__encre {
+  fill: var(--face-texte);
+}
+.plate__numero.plate__encre {
+  fill: var(--face-texte);
+}
+.plate__relief-clair,
+.plate__relief-clair text {
+  fill: var(--relief-clair);
+}
+.plate__relief-sombre,
+.plate__relief-sombre text {
+  fill: var(--relief-sombre);
+}
+
+/* Contour seul (prévu), pointillé (décalé). */
+.plate__trait path {
+  fill: none;
+  stroke: var(--face);
+  stroke-width: 1.5px;
+  vector-effect: non-scaling-stroke;
+}
+.plate--pastille .plate__trait path {
+  stroke-width: 1.25px;
+}
+.plate--decale .plate__silhouette {
+  stroke-dasharray: 5 4;
+}
+.plate--prevu .plate__lettrage,
+.plate--decale .plate__lettrage {
+  fill: var(--face);
+}
+.plate__numero--contour {
+  fill: none;
+  stroke: var(--face);
+  stroke-width: 1.25px;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Sauté : estompé, barre diagonale. */
+.plate--saute .plate__corps {
+  opacity: 0.32;
+}
+.plate__barre {
+  stroke: var(--encre);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.plate--pastille .plate__barre {
+  stroke-width: 1.5px;
+}

@@ -13,7 +13,8 @@
   initial-value: #ffffff;
 }
 
-:root {
+:root,
+[data-theme='light'] {
   color-scheme: light;
 
   --fond: #f3f5f6;
@@ -88,7 +89,7 @@
   }
 }
 
-:root[data-theme='dark'] {
+[data-theme='dark'] {
   color-scheme: dark;
   --fond: #181c21;
   --surface: #22272e;

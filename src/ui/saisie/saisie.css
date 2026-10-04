@@ -1,0 +1,48 @@
+.saisie {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.saisie__label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--attenue);
+}
+.saisie__champ {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: 8px;
+}
+.saisie__bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: var(--rayon-bouton);
+  background: var(--surface-2);
+  color: var(--encre);
+  transition: transform 120ms ease;
+}
+.saisie__bouton:active {
+  transform: scale(0.98);
+}
+.saisie__bouton:disabled {
+  opacity: 0.4;
+}
+.saisie__valeur {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1;
+}
+.saisie__unite {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--attenue);
+}

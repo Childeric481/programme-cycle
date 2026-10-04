@@ -1,0 +1,9 @@
+.montee {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.montee--cachee {
+  visibility: hidden;
+  pointer-events: none;
+}

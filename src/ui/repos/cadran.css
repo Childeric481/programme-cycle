@@ -1,0 +1,119 @@
+.cadran {
+  --jante: color-mix(in oklab, var(--face) var(--assombri), #000);
+  position: relative;
+  width: var(--d);
+  height: var(--d);
+  flex: none;
+}
+
+.cadran__objet {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+}
+
+.cadran__disque {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Jante vide : le caoutchouc nu, plus sombre. */
+.cadran .plate__piste {
+  fill: var(--jante);
+}
+
+.cadran__jauge {
+  position: absolute;
+  inset: 0;
+}
+.cadran__demi {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+.cadran__demi--droite {
+  left: 50%;
+}
+/* La moitié gauche déborde d'un pixel : pas de filet au raccord, à midi et à six heures. */
+.cadran__demi--gauche {
+  left: 0;
+  width: calc(50% + 1px);
+}
+.cadran__lame {
+  position: absolute;
+  top: 0;
+  width: var(--d);
+  height: var(--d);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+.cadran__demi--droite .cadran__lame {
+  left: calc(var(--d) / -2);
+}
+.cadran__demi--gauche .cadran__lame {
+  left: 0;
+}
+.cadran__lame svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.cadran__lame path {
+  fill: var(--face-texte);
+}
+
+.cadran__lettrage,
+.cadran__decalage,
+.cadran__tour {
+  position: absolute;
+  inset: 0;
+}
+.cadran__tour svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* Relief à lumière fixe : le décalage reste dans le repère de l'écran, seul le texte tourne. */
+.cadran__decalage--sombre {
+  transform: translate(1px, 1px);
+}
+.cadran__decalage--clair {
+  transform: translate(-1px, -1px);
+}
+.cadran__tour {
+  animation: cadran-tour 60s linear infinite;
+  will-change: transform;
+}
+.cadran--pause .cadran__tour {
+  animation-play-state: paused;
+}
+.cadran--reduit .cadran__tour {
+  animation: none;
+}
+@keyframes cadran-tour {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cadran__tour {
+    animation: none;
+  }
+}
+
+.cadran__temps {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: clamp(64px, 22vw, 104px);
+  line-height: 1;
+  color: var(--face-texte);
+  letter-spacing: -0.01em;
+}

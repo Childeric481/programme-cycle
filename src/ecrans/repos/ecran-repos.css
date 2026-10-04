@@ -1,0 +1,66 @@
+/* Repos : plein écran, dans la couleur de la séance. */
+.repos {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--face);
+  color: var(--face-texte);
+  padding: calc(env(safe-area-inset-top) + 18px) 16px calc(env(safe-area-inset-bottom) + 16px);
+  overflow: hidden;
+}
+
+.repos__libelle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.1;
+  min-height: 31px;
+}
+
+.repos__scene {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.repos__ensuite {
+  font-size: 19px;
+  font-weight: 500;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.repos__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.repos__reglages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.repos__secondaire {
+  min-height: 56px;
+  padding: 0 8px;
+  font-size: 19px;
+  background: color-mix(in oklab, var(--face-texte) 12%, transparent);
+  color: var(--face-texte);
+}
+.repos__secondaire:disabled {
+  opacity: 0.45;
+}
+.repos__principal {
+  min-height: 64px;
+  font-size: 20px;
+  background: var(--face-texte);
+  color: var(--face);
+}
+.repos .bouton:focus-visible {
+  outline-color: var(--face-texte);
+}
