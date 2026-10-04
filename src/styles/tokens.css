@@ -1,0 +1,131 @@
+/* Jetons (E.7). Valeurs de la version de référence, clair puis sombre.
+   Les tons dérivés (jante, acier, fonte usinée, relief) se calculent depuis cette base
+   et se valident sur la planche. */
+
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c8202f;
+}
+@property --accent-texte {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ffffff;
+}
+
+:root {
+  color-scheme: light;
+
+  --fond: #f3f5f6;
+  --surface: #ffffff;
+  --surface-2: #e7ebee;
+  --encre: #1c2127;
+  --attenue: #5b6570;
+  --filet: #d3d9de;
+  --focus: #1d5db8;
+
+  --s1: #c8202f;
+  --s1-texte: #ffffff;
+  --s2: #1d5db8;
+  --s2-texte: #ffffff;
+  --s3: #d9a100;
+  --s3-texte: #1c2127;
+  --s4: #23835a;
+  --s4-texte: #ffffff;
+  --s5: #3b4149;
+  --s5-texte: #ffffff;
+
+  /* Dérivés : caoutchouc de la jante, un ton plus sombre que la face. */
+  --assombri: 80%;
+  /* Acier du moyeu et du manchon. */
+  --acier: #c3cad0;
+  --acier-clair: #e3e7ea;
+  --acier-sombre: #858e97;
+  /* Fonte de la séance 5 : anneau usiné légèrement plus clair. */
+  --s5-usine: #4f565f;
+  /* Relief : une seule source de lumière, en haut à gauche. */
+  --relief-clair: rgb(255 255 255 / 0.5);
+  --relief-sombre: rgb(0 0 0 / 0.3);
+  --grain: 0.05;
+  --grain-fonte: 0.11;
+
+  --rayon-bouton: 14px;
+  --rayon-feuille: 24px;
+
+  --accent: var(--s1);
+  --accent-texte: var(--s1-texte);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --fond: #181c21;
+    --surface: #22272e;
+    --surface-2: #2b3139;
+    --encre: #edf1f4;
+    --attenue: #9ca6b0;
+    --filet: #363d46;
+    --focus: #7fb0ff;
+    --s1: #f0485a;
+    --s1-texte: #16191d;
+    --s2: #5b95f2;
+    --s2-texte: #16191d;
+    --s3: #f5c230;
+    --s3-texte: #16191d;
+    --s4: #3dba82;
+    --s4-texte: #16191d;
+    --s5: #c4cbd3;
+    --s5-texte: #16191d;
+    --assombri: 76%;
+    --acier: #a3acb4;
+    --acier-clair: #cdd3d8;
+    --acier-sombre: #6c757e;
+    --s5-usine: #d9dee3;
+    --relief-clair: rgb(255 255 255 / 0.4);
+    --relief-sombre: rgb(0 0 0 / 0.4);
+    --grain: 0.06;
+    --grain-fonte: 0.12;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --fond: #181c21;
+  --surface: #22272e;
+  --surface-2: #2b3139;
+  --encre: #edf1f4;
+  --attenue: #9ca6b0;
+  --filet: #363d46;
+  --focus: #7fb0ff;
+  --s1: #f0485a;
+  --s1-texte: #16191d;
+  --s2: #5b95f2;
+  --s2-texte: #16191d;
+  --s3: #f5c230;
+  --s3-texte: #16191d;
+  --s4: #3dba82;
+  --s4-texte: #16191d;
+  --s5: #c4cbd3;
+  --s5-texte: #16191d;
+  --assombri: 76%;
+  --acier: #a3acb4;
+  --acier-clair: #cdd3d8;
+  --acier-sombre: #6c757e;
+  --s5-usine: #d9dee3;
+  --relief-clair: rgb(255 255 255 / 0.4);
+  --relief-sombre: rgb(0 0 0 / 0.4);
+  --grain: 0.06;
+  --grain-fonte: 0.12;
+}
+
+/* Couleur d'accent : celle de la séance affichée. */
+[data-seance='1'] { --accent: var(--s1); --accent-texte: var(--s1-texte); }
+[data-seance='2'] { --accent: var(--s2); --accent-texte: var(--s2-texte); }
+[data-seance='3'] { --accent: var(--s3); --accent-texte: var(--s3-texte); }
+[data-seance='4'] { --accent: var(--s4); --accent-texte: var(--s4-texte); }
+[data-seance='5'] { --accent: var(--s5); --accent-texte: var(--s5-texte); }
+
+[data-seance] {
+  --accent-jante: color-mix(in oklab, var(--accent) var(--assombri), #000);
+  transition: --accent 400ms ease, --accent-texte 400ms ease;
+}

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Programme</title>
+    <meta name="theme-color" content="#f3f5f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#181c21" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="apple-mobile-web-app-title" content="Programme" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="icon" type="image/png" href="/icons/icon-192.png" />
+    <script>
+      // Thème forcé dans les réglages : appliqué avant le premier affichage.
+      try {
+        var t = localStorage.getItem('programme.theme');
+        if (t === 'clair') document.documentElement.dataset.theme = 'light';
+        if (t === 'sombre') document.documentElement.dataset.theme = 'dark';
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

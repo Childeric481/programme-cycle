@@ -1,0 +1,137 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: 'Barlow', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+.condense {
+  font-family: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+a {
+  color: inherit;
+}
+
+.num {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.secondaire {
+  font-size: 15px;
+  color: var(--attenue);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Boutons : rayon 14 px, enfoncement à 0,98 au toucher (120 ms). */
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: var(--rayon-bouton);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.1;
+  text-align: center;
+  transition: transform 120ms ease;
+  user-select: none;
+}
+.bouton:active {
+  transform: scale(0.98);
+}
+.bouton--seance {
+  min-height: 56px;
+}
+.bouton--principal {
+  background: var(--accent);
+  color: var(--accent-texte);
+}
+.bouton--secondaire {
+  background: var(--surface-2);
+  color: var(--encre);
+}
+.bouton--plein {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+  .bouton:active {
+    transform: none;
+  }
+}

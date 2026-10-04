@@ -1,0 +1,37 @@
+.squelette {
+  min-height: 100dvh;
+  padding: calc(env(safe-area-inset-top) + 48px) 16px calc(env(safe-area-inset-bottom) + 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.squelette__date {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 0.95;
+}
+.squelette__semaine {
+  color: var(--attenue);
+}
+.squelette__jour {
+  margin-top: 24px;
+}
+.squelette__version {
+  margin-top: auto;
+}
+
+.bandeau-maj {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom) + 16px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 10px 10px 16px;
+  background: var(--surface);
+  border: 1px solid var(--filet);
+  border-radius: var(--rayon-bouton);
+  font-weight: 500;
+}
