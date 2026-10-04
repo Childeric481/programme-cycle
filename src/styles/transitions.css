@@ -1,0 +1,136 @@
+/* Transitions de vue (E.5). Avant : glissement vers la gauche. Retour : vers la droite.
+   Les onglets changent sans glissement. Le disque du bloc du jour devient celui
+   de l'en-tête du détail (420 ms). */
+
+::view-transition-group(*) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+html[data-transition='avant']::view-transition-old(root) {
+  animation-name: vt-sortie-gauche;
+}
+html[data-transition='avant']::view-transition-new(root) {
+  animation-name: vt-entree-droite;
+}
+html[data-transition='retour']::view-transition-old(root) {
+  animation-name: vt-sortie-droite;
+}
+html[data-transition='retour']::view-transition-new(root) {
+  animation-name: vt-entree-gauche;
+}
+html[data-transition='onglet']::view-transition-old(root),
+html[data-transition='onglet']::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(disque-seance) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Changement d'étape dans la séance : le titre parcourt 100 % de la course, le contenu 85 %. */
+html[data-transition^='etape']::view-transition-old(root),
+html[data-transition^='etape']::view-transition-new(root) {
+  animation: none;
+}
+html[data-transition='etape-avant']::view-transition-old(etape-titre) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-sortie-gauche-100;
+}
+html[data-transition='etape-avant']::view-transition-new(etape-titre) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-entree-droite-100;
+}
+html[data-transition='etape-avant']::view-transition-old(etape-contenu) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-sortie-gauche-85;
+}
+html[data-transition='etape-avant']::view-transition-new(etape-contenu) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-entree-droite-85;
+}
+html[data-transition='etape-retour']::view-transition-old(etape-titre) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-sortie-droite-100;
+}
+html[data-transition='etape-retour']::view-transition-new(etape-titre) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-entree-gauche-100;
+}
+html[data-transition='etape-retour']::view-transition-old(etape-contenu) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-sortie-droite-85;
+}
+html[data-transition='etape-retour']::view-transition-new(etape-contenu) {
+  animation: 260ms cubic-bezier(0.2, 0.8, 0.2, 1) both vt-entree-gauche-85;
+}
+
+@keyframes vt-sortie-gauche {
+  to {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+}
+@keyframes vt-entree-droite {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes vt-sortie-droite {
+  to {
+    transform: translateX(30%);
+    opacity: 0;
+  }
+}
+@keyframes vt-entree-gauche {
+  from {
+    transform: translateX(-100%);
+  }
+}
+@keyframes vt-sortie-gauche-100 {
+  to {
+    transform: translateX(-100vw);
+  }
+}
+@keyframes vt-entree-droite-100 {
+  from {
+    transform: translateX(100vw);
+  }
+}
+@keyframes vt-sortie-droite-100 {
+  to {
+    transform: translateX(100vw);
+  }
+}
+@keyframes vt-entree-gauche-100 {
+  from {
+    transform: translateX(-100vw);
+  }
+}
+@keyframes vt-sortie-gauche-85 {
+  to {
+    transform: translateX(-85vw);
+  }
+}
+@keyframes vt-entree-droite-85 {
+  from {
+    transform: translateX(85vw);
+  }
+}
+@keyframes vt-sortie-droite-85 {
+  to {
+    transform: translateX(85vw);
+  }
+}
+@keyframes vt-entree-gauche-85 {
+  from {
+    transform: translateX(-85vw);
+  }
+}
+
+/* Mouvement réduit : fondus de 120 ms. */
+html[data-transition='fondu']::view-transition-group(*),
+html[data-transition='fondu']::view-transition-old(*),
+html[data-transition='fondu']::view-transition-new(*) {
+  animation-duration: 120ms;
+}

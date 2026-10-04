@@ -35,10 +35,32 @@
   align-items: baseline;
   justify-content: center;
   gap: 6px;
+  min-width: 0;
+  height: 56px;
+  border-radius: var(--rayon-bouton);
+  cursor: text;
+}
+.saisie__entree {
+  width: 100%;
+  min-width: 0;
+  max-width: 5.2ch;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--encre);
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
   font-size: 36px;
-  line-height: 1;
+  line-height: 56px;
+  text-align: right;
+  outline: none;
+}
+.saisie__entree::placeholder {
+  color: var(--attenue);
+}
+.saisie__valeur:focus-within {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
 }
 .saisie__unite {
   font-family: 'Barlow', sans-serif;

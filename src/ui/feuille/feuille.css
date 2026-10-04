@@ -1,0 +1,41 @@
+.feuille {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.feuille__voile {
+  position: absolute;
+  inset: 0;
+  background: rgb(10 12 15 / 0.48);
+}
+.feuille__panneau {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 16px calc(env(safe-area-inset-bottom) + 16px);
+  background: var(--surface);
+  color: var(--encre);
+  border-radius: var(--rayon-feuille) var(--rayon-feuille) 0 0;
+}
+.feuille__titre {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+.feuille__texte {
+  margin-bottom: 10px;
+  color: var(--attenue);
+}
+.feuille__lien {
+  min-height: 48px;
+  font-weight: 600;
+  color: var(--encre);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}

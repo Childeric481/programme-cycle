@@ -1,0 +1,219 @@
+.aujourdhui {
+  --haut: calc(env(safe-area-inset-top) + 8px);
+  --d: min(118vw, 500px);
+  /* Centre du disque héros : à 82 % de la largeur, le bord droit le coupe. */
+  --cx: 82%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* En-tête : la date en très grand, ferrée à gauche, posée devant le disque du jour. */
+.aujourdhui__entete {
+  position: relative;
+  min-height: calc(var(--haut) + 34vh);
+  padding: calc(var(--haut) + 44px) 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.aujourdhui__entete--disque {
+  min-height: calc(var(--haut) + var(--d) + 6px);
+}
+.aujourdhui__heros {
+  position: absolute;
+  top: var(--haut);
+  left: calc(var(--cx) - var(--d) / 2);
+  width: var(--d);
+  height: var(--d);
+  pointer-events: none;
+  view-transition-name: disque-seance;
+}
+.aujourdhui__heros .plate {
+  width: 100%;
+  height: 100%;
+}
+/* Contour seul : en héros, il s'efface derrière la date. */
+.aujourdhui__heros .plate--prevu,
+.aujourdhui__heros .plate--decale {
+  opacity: 0.42;
+}
+.aujourdhui__titres {
+  position: relative;
+}
+/* Sur un disque plein, la date passe dans la couleur du texte de la séance, au pixel près. */
+.aujourdhui__titres--sur-disque {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  padding: calc(var(--haut) + 44px) 16px 20px;
+  color: var(--accent-texte);
+  clip-path: circle(calc(var(--d) / 2) at var(--cx) calc(var(--haut) + var(--d) / 2));
+  pointer-events: none;
+}
+.aujourdhui__titres--sur-disque .aujourdhui__semaine {
+  color: inherit;
+}
+.aujourdhui__date {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.005em;
+}
+.aujourdhui__semaine {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--attenue);
+}
+
+/* Bloc du jour */
+.jour {
+  position: relative;
+  padding: 0 16px;
+}
+.jour__surtitre {
+  font-weight: 600;
+}
+.jour__titre {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.02;
+  margin-top: 2px;
+  text-wrap: balance;
+}
+.jour__infos {
+  margin-top: 6px;
+  color: var(--attenue);
+}
+.jour__suite {
+  margin-top: 14px;
+}
+.jour__actions {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.jour__liens {
+  display: flex;
+  gap: 24px;
+}
+.jour__lien {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--encre);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.aujourdhui__section {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* La semaine se lit comme un rack : sept emplacements, un petit disque par séance. */
+.semaine {
+  position: relative;
+  padding: 36px 16px 0;
+}
+.semaine__rack {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+}
+.semaine__jour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.semaine__lettre {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--attenue);
+}
+.semaine__numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 600;
+}
+.semaine__jour--aujourdhui .semaine__numero {
+  background: var(--encre);
+  color: var(--fond);
+}
+.semaine__jour--vacances .semaine__lettre,
+.semaine__jour--vacances .semaine__numero {
+  color: var(--attenue);
+  font-weight: 400;
+}
+.semaine__emplacement {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1px;
+  height: 40px;
+  margin-top: 4px;
+}
+/* Cheville d'un emplacement vide. */
+.semaine__emplacement::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 2px;
+  height: 6px;
+  transform: translateX(-50%);
+  background: var(--filet);
+}
+.semaine__vacances {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px dotted var(--attenue);
+  margin-bottom: 2px;
+}
+.semaine__rail {
+  height: 3px;
+  margin-top: 6px;
+  border-radius: 2px;
+  background: var(--acier);
+  box-shadow: inset 0 1px 0 var(--relief-clair), inset 0 -1px 0 var(--relief-sombre);
+}
+
+/* Dernières séances */
+.recentes {
+  padding: 36px 16px 0;
+}
+.recentes__liste {
+  display: flex;
+  flex-direction: column;
+}
+.recentes__ligne {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 60px;
+  border-top: 1px solid var(--filet);
+}
+.recentes__ligne:last-child {
+  border-bottom: 1px solid var(--filet);
+}
+.recentes__texte {
+  display: flex;
+  flex-direction: column;
+}
+.recentes__date {
+  font-weight: 600;
+}

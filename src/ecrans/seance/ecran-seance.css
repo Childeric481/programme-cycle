@@ -1,0 +1,7 @@
+/* La séance occupe tout l'écran : pas de barre d'onglets. */
+.ecran-seance {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--fond);
+}

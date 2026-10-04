@@ -23,7 +23,11 @@
 | 1. Lecture, NOTES.md, vérifications | Fait le 4 octobre 2026 |
 | 2. Modèle du contenu et test de conformité | Fait. 52 vérifications, toutes vertes |
 | 3. Dépôt, workflow, squelette publié | Fait. Dépôt public `programme-cycle`, déploiement par GitHub Actions à chaque envoi sur `main` |
-| 4. Planche de direction | Publiée, en attente de validation |
+| 4. Planche de direction | Validée le 4 octobre 2026, avec ses six choix |
+| 5. Socle : navigation, Aujourd'hui, séance guidée, repos, persistance, hors ligne | Fait, publié |
+| 6. Cinq séances, versions courtes, progression proposée, saisies spéciales | À faire |
+| 7. Progrès, décaler ou sauter, Règles, volets « Pourquoi » | À faire |
+| 8. Notifications, réglages, finitions, vérifications finales | À faire |
 
 ## Choix techniques
 
@@ -93,6 +97,19 @@ Actions GitHub (pages de publication, 4 octobre 2026) : `actions/checkout@v7`, `
 - **Volet « Pourquoi »** : E.5 demande une animation de hauteur, seule exception à la règle « transform et opacity ».
 - **Typographie à l'affichage** : apostrophe typographique, espaces insécables avant les deux-points et entre chiffre et unité. Le contenu stocké reste identique au document.
 - **Captures** : `scripts/captures-planche.mjs` (Playwright 1.63.0), à 390 × 844 et 360 × 800, clair et sombre. Corrigé après relecture : affichage « 60,0 kg » devenu « 60 kg », disque décalé allégé (seul le contour en pointillé), insert d'acier des disques de profil, raccord de la jauge à midi.
+
+## Étape 5 : socle
+
+- **Navigation** : routage par ancre, transitions de vue (avant vers la gauche, retour vers la droite, onglets sans glissement), fondus de 120 ms en mouvement réduit. La barre d'onglets disparaît pendant la séance et sur l'écran de fin. Progrès et Règles affichent un écran d'attente jusqu'à l'étape 7.
+- **Persistance** : IndexedDB, base `programme`, schéma version 1 (réglages, séance en cours, journal, historique par mouvement, décalages et sauts), migrations par version. Chaque geste est écrit aussitôt. Réouverture automatique de la base si la connexion est perdue (iPhone). `navigator.storage.persist()` demandé au lancement.
+- **Reprise** : une séance en cours, non mise en pause, rouvre directement l'écran de séance, repos compris. Après une pause volontaire, l'accueil affiche « Séance en cours » et « Reprendre la séance ».
+- **Repos** : l'écran de repos est construit à l'avance, caché. Le minuteur part à la validation de la série, le panneau monte 460 ms plus tard, une fois le disque plaqué sur la barre. Mesuré : 60 images par seconde, processeur ralenti ×4.
+- **Saisies** : la valeur se tape au clavier (virgule acceptée) ou s'ajuste avec − et +. Préremplie avec la dernière valeur de la même séance. Une correction faite après une série validée est enregistrée aussi.
+- **Fin de séance** : sur le dernier exercice, le lien « Étape suivante » est désactivé, pour ne jamais terminer une séance d'un seul geste par erreur. Le bouton principal « Terminer la séance » n'apparaît qu'une fois toutes les séries faites.
+- **Accueil** : disque héros centré à 82 % de la largeur, diamètre min(118 vw, 500 px), coupé par le bord droit. Contour (prévu, décalé) à 42 % d'opacité derrière la date. Sur un disque plein (en cours, fait), la date passe dans la couleur du texte de la séance, découpée au pixel près par `clip-path`.
+- **Fin** : un disque par exercice fait se charge de chaque côté de la barre, en cascade (600 ms), puis la barre se soulève et se repose (600 ms). Les chiffres apparaissent ensuite.
+- **Vérifié** (`scripts/parcours.mjs` en clair et en sombre, `scripts/parcours-cas.mjs`) : séance du jour, « Ensuite, série 2 sur 4. », fermeture pendant un repos puis réouverture (2:29 puis 2:26 après 3 s), pause et reprise, fin « 1 minute, 24 séries validées. », valeur notée « 62,5 kg », circuit de la séance 4 (trois tours, repos entre les tours, cases décochées, « Circuit terminé »), retour après la fin d'un repos (« Repos terminé il y a 0:40 », puis la séance enchaîne).
+- **Reste pour l'étape 6** : version courte au départ, question de réserve et charge proposée, sélecteur d'étape de traction, genou-mur, meilleur temps au centième.
 
 ## Idées proposées, non implémentées
 

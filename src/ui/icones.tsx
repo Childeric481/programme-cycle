@@ -68,6 +68,64 @@ export function IconePlus(p: IconeProps) {
   );
 }
 
+export function IconeRetour(p: IconeProps) {
+  return (
+    <Svg {...p}>
+      <path d="M15 5l-7 7 7 7" />
+    </Svg>
+  );
+}
+
+export function IconeCoche(p: IconeProps) {
+  return (
+    <Svg {...p}>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </Svg>
+  );
+}
+
+/** Aujourd'hui : un disque vu de face. */
+export function IconeAujourdhui(p: IconeProps) {
+  return (
+    <Svg {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="2.5" />
+    </Svg>
+  );
+}
+
+/** Séances : des disques vus de profil, sur leur manchon. */
+export function IconeSeances(p: IconeProps) {
+  return (
+    <Svg {...p}>
+      <path d="M2 12h3M19 12h3" />
+      <rect x="6" y="4" width="3" height="16" rx="1" />
+      <rect x="10.5" y="4" width="3" height="16" rx="1" />
+      <rect x="15" y="6" width="3" height="12" rx="1" />
+    </Svg>
+  );
+}
+
+/** Progrès : une courbe sur son axe. */
+export function IconeProgres(p: IconeProps) {
+  return (
+    <Svg {...p}>
+      <path d="M4 4v16h16" />
+      <path d="M7.5 15l3.5-4 3 2.5 5-6.5" />
+    </Svg>
+  );
+}
+
+/** Règles : une page de lecture. */
+export function IconeRegles(p: IconeProps) {
+  return (
+    <Svg {...p}>
+      <path d="M6 3.5h9l3 3v14H6z" />
+      <path d="M9 10h6M9 13.5h6M9 17h4" />
+    </Svg>
+  );
+}
+
 export function IconeChevron(p: IconeProps) {
   return (
     <Svg {...p}>

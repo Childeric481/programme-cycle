@@ -2,7 +2,7 @@
 // Un jour de vacances n'a pas de séance. Sinon la séance du jour est celle du
 // tableau de C.1, puis les décalages et les sauts enregistrés s'appliquent.
 
-import type { PeriodeVacances, SeanceId } from '../data/program';
+import type { JourIndex, PeriodeVacances, SeanceId } from '../data/program';
 import { enVacances, seanceDuCalendrier } from './calendrier';
 import { ajouterJours, jourSemaine, lundiDe, type Iso } from './dates';
 
@@ -27,6 +27,8 @@ export interface EntreeJournal {
   readonly duree: number;
   readonly series: number;
   readonly version: 'complete' | 'courte';
+  /** Exercices avec au moins une série validée (circuit compris) : un disque chacun en fin de séance. */
+  readonly exercicesFaits?: number;
 }
 
 export interface SeanceDuJour {
@@ -70,7 +72,7 @@ export type EtatMarqueur = 'fait' | 'prevu' | 'decale' | 'saute';
 
 export interface JourSemaine {
   readonly date: Iso;
-  readonly index: number;
+  readonly index: JourIndex;
   readonly aujourdhui: boolean;
   readonly vacances: boolean;
   readonly marqueurs: readonly { id: SeanceId; etat: EtatMarqueur }[];

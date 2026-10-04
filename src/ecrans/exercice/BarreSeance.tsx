@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'preact/hooks';
+import { formatDuree } from '../../logic/repos';
 import { IconeFermer, IconeSon, IconeSonCoupe } from '../../ui/icones';
 import './barre-seance.css';
 
@@ -7,9 +9,28 @@ export interface Segment {
   courant: boolean;
 }
 
+export interface Chrono {
+  debut: number;
+  cumulPause: number;
+  pauseDepuis: number | null;
+}
+
+/** Temps écoulé, pauses exclues, mis à jour chaque seconde. */
+function TempsEcoule({ debut, cumulPause, pauseDepuis }: Chrono) {
+  const [maintenant, setMaintenant] = useState(Date.now());
+  useEffect(() => {
+    if (pauseDepuis !== null) return undefined;
+    const id = window.setInterval(() => setMaintenant(Date.now()), 1000);
+    return () => window.clearInterval(id);
+  }, [pauseDepuis]);
+  const ms = Math.max(0, (pauseDepuis ?? maintenant) - debut - cumulPause);
+  return <span>{formatDuree(Math.floor(ms / 1000))}</span>;
+}
+
 export interface BarreSeanceProps {
   segments: readonly Segment[];
-  ecoule: string;
+  ecoule?: string;
+  chrono?: Chrono;
   son: boolean;
   versionCourte: boolean;
   onFermer: () => void;
@@ -17,7 +38,7 @@ export interface BarreSeanceProps {
 }
 
 /** Barre du haut de la séance : fermeture, progression segmentée, temps écoulé, son. */
-export function BarreSeance({ segments, ecoule, son, versionCourte, onFermer, onSon }: BarreSeanceProps) {
+export function BarreSeance({ segments, ecoule, chrono, son, versionCourte, onFermer, onSon }: BarreSeanceProps) {
   return (
     <header class="barre-seance">
       <button type="button" class="barre-seance__bouton" aria-label="Fermer la séance" onClick={onFermer}>
@@ -32,7 +53,7 @@ export function BarreSeance({ segments, ecoule, son, versionCourte, onFermer, on
           ))}
         </div>
         <p class="barre-seance__infos num">
-          <span>{ecoule}</span>
+          {chrono ? <TempsEcoule {...chrono} /> : <span>{ecoule}</span>}
           {versionCourte && <span class="barre-seance__courte">Version courte</span>}
         </p>
       </div>

@@ -301,6 +301,7 @@ export function entreeJournal(e: EtatSeance, maintenant: number): EntreeJournal 
     duree: Math.max(1, Math.round(dureeMs(e, maintenant) / 60_000)),
     series: seriesValidees(e),
     version: e.format,
+    exercicesFaits: Object.values(e.series).filter((n) => n > 0).length + (e.tours > 0 ? 1 : 0),
   };
 }
 

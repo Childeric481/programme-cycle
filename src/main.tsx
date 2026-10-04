@@ -2,6 +2,7 @@ import { render } from 'preact';
 import './styles/fonts.css';
 import './styles/tokens.css';
 import './styles/base.css';
+import './styles/transitions.css';
 import { App } from './app/App';
 import { enregistrerServiceWorker } from './app/pwa';
 

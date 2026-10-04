@@ -30,12 +30,19 @@ export interface EcranExerciceProps {
   champs: readonly ChampExercice[];
   libelleSuivant: string;
   reduit: boolean;
-  enTete: ComponentChildren;
+  enTete?: ComponentChildren;
+  /** Noms de transition de vue : le titre et le contenu glissent au changement d'étape. */
+  transitions?: boolean;
+  peutPrecedent?: boolean;
+  peutSuivante?: boolean;
   onValeur: (cle: string, v: number) => void;
   onValider: () => void;
   onAnnuler: () => void;
   onPrecedent: () => void;
+  /** Bouton principal, une fois toutes les séries faites. */
   onSuivant: () => void;
+  /** Lien « Étape suivante ». Par défaut, comme le bouton principal. */
+  onEtapeSuivante?: () => void;
 }
 
 /** Format en très grand, réduit par paliers pour les formats longs. */
@@ -57,19 +64,19 @@ export function EcranExercice(p: EcranExerciceProps) {
   return (
     <section class="exercice" data-seance={p.seance}>
       {p.enTete}
-      <div class="exercice__defilement">
+      <div class="exercice__defilement" style={p.transitions ? 'view-transition-name: etape-contenu' : undefined}>
         <p class="exercice__reperage">{p.reperage}</p>
-        {ex.superset ? (
-          <h1 class="exercice__nom" lang="fr">
-            {ex.mouvements[0]?.nom}
-            <span class="exercice__puis">puis, sans pause</span>
-            {ex.mouvements[1]?.nom}
-          </h1>
-        ) : (
-          <h1 class="exercice__nom" lang="fr">
-            {ex.nom}
-          </h1>
-        )}
+        <h1 class="exercice__nom" lang="fr" style={p.transitions ? 'view-transition-name: etape-titre' : undefined}>
+          {ex.superset ? (
+            <>
+              {ex.mouvements[0]?.nom}
+              <span class="exercice__puis">puis, sans pause</span>
+              {ex.mouvements[1]?.nom}
+            </>
+          ) : (
+            ex.nom
+          )}
+        </h1>
         <p class={`exercice__format exercice__format--${tailleFormat(format)} num`}>{typo(format)}</p>
         <p class="exercice__repos">Repos {typo(dureeEnClair(ex.repos))}</p>
         {ex.note && <p class="exercice__note">{typo(ex.note)}</p>}
@@ -131,13 +138,18 @@ export function EcranExercice(p: EcranExerciceProps) {
           {toutFait ? p.libelleSuivant : `Valider la série ${p.faites + 1}`}
         </button>
         <div class="exercice__navigation">
-          <button type="button" class="exercice__nav" onClick={p.onPrecedent}>
+          <button type="button" class="exercice__nav" disabled={p.peutPrecedent === false} onClick={p.onPrecedent}>
             Étape précédente
           </button>
           <button type="button" class="exercice__nav" disabled={p.faites === 0} onClick={p.onAnnuler}>
             Annuler la dernière série
           </button>
-          <button type="button" class="exercice__nav" onClick={p.onSuivant}>
+          <button
+            type="button"
+            class="exercice__nav"
+            disabled={p.peutSuivante === false}
+            onClick={p.onEtapeSuivante ?? p.onSuivant}
+          >
             Étape suivante
           </button>
         </div>

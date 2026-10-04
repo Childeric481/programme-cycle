@@ -1,0 +1,43 @@
+.onglets {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0 4px env(safe-area-inset-bottom);
+  background: var(--fond);
+  border-top: 1px solid var(--filet);
+  view-transition-name: onglets;
+}
+.onglets__lien {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 58px;
+  padding: 6px 2px 4px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--attenue);
+  text-decoration: none;
+  transition: transform 120ms ease;
+}
+.onglets__lien:active {
+  transform: scale(0.98);
+}
+.onglets__lien--actif {
+  color: var(--encre);
+  font-weight: 600;
+}
+.onglets__lien--actif .icone {
+  color: var(--encre);
+}
+
+/* Espace réservé sous le contenu des écrans à onglets. */
+.avec-onglets {
+  padding-bottom: calc(58px + env(safe-area-inset-bottom) + 24px);
+}
